@@ -1,4 +1,4 @@
-const product = require('../../db').products
+const product = require('../../database/models').products
 const route = require('express').Router()
 
 route.get('/', (req, res) => {

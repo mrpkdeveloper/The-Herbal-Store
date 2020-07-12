@@ -1,4 +1,4 @@
-const user = require('../../db').users   //this statement access user class from db.js to user 
+const user = require('../../database/models').users   //this statement access user class from db.js to user 
 const route = require('express').Router()
 
 
