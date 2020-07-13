@@ -1,5 +1,15 @@
 const { findAllProducts, AddNewProduct } = require('../../controllers/product')
 const route = require('express').Router()
+const multer = require('multer')
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
+    }
+})
+const upload = multer({ storage: storage })
 
 route.get('/', async (req, res) => {
     //get all products
@@ -7,8 +17,9 @@ route.get('/', async (req, res) => {
     res.status(200).send(products)
 })
 
-route.post('/', async (req, res) => {
+route.post('/', upload.single('productimage'), async (req, res) => {
     //add new products
+    // console.log(req.file)
     const { name, price, manufacturer } = req.body
 
     if ((!name) || (!price) || (!manufacturer)) {
@@ -19,20 +30,6 @@ route.post('/', async (req, res) => {
     const products = await AddNewProduct(name, price, manufacturer)
     res.status(201).send(products)
 
-
-
-    // product.create({
-    //     name: req.body.name,
-    //     price: parseFloat(req.body.price),
-    //     manufacturer: req.body.manufacturer
-
-    // })
-    //     .then((product) => {
-    //         res.status(201).send(product)
-    //     })
-    //     .catch((err) => {
-    //         res.status(501).send({ error: "could not add new products" })
-    //     })
 })
 
 module.exports = route
