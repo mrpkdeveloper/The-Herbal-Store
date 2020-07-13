@@ -3,7 +3,7 @@ function fetchproducts(done) {
         done(data)
     })
 }
- 
+
 function addproducts(name, manu, price, done) {
     $.post('/api/products', {
         name: name,
@@ -18,6 +18,7 @@ function addproducts(name, manu, price, done) {
 function createproductcard(product) {
     return $(`
     <div class=" card col-4 " style="width: 18rem;">
+    <img src="./assests/giphy (1).gif" width="50" height="200" class="card-img-top" alt="...">
         <div class="card-body">
             <h4 class="card-title">${product.name}</h5>
             <h6 class="card-title">${product.manufacturer}</h4>
@@ -25,7 +26,7 @@ function createproductcard(product) {
             <button type="submit" class="btn btn-primary m-3" id="button-${product.id}">Buy</button>
         </div>
     </div>`)
-    
+
 }
 
 

@@ -1,10 +1,11 @@
 const { products } = require('../database/models')
 
-async function AddNewProduct(name, price, manufacturer) {
+async function AddNewProduct(name, price, manufacturer, productimage) {
     const new_product = await products.create({
         name,
         price,
         manufacturer,
+        productimage,
         ignoreDuplicates: true
     })
 

@@ -28,6 +28,9 @@ const products = db.define('products', {              //table name products with
         allowNull: true,
         defaultValue: 0.0
 
+    },
+    productimage: {
+        type: DataTypes.STRING
     }
 
 })
