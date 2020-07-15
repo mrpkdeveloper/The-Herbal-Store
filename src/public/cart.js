@@ -1,7 +1,9 @@
-$(function(){
-let buy_btn = $('#button-1') 
+$(function () {
+    let buy_btn = $('#button-1')
 
-buy_btn.click(function(){
-    console.log("button clicked")
-})
+    console.log("in cart.js")
+
+    buy_btn.click(function () {
+        console.log("button clicked")
+    })
 })

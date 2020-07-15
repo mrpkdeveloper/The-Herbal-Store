@@ -1,5 +1,6 @@
-function fetchproducts(done) {
-    $.get('/api/products', function (data) {
+console.log("in shop.js")
+async function fetchproducts(done) {
+    await $.get('/api/products', function (data) {
         done(data)
     })
 }
