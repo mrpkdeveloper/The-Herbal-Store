@@ -1,9 +1,10 @@
 const { findAllProducts, AddNewProduct } = require('../../controllers/product')
 const route = require('express').Router()
+//multer
 const multer = require('multer')
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads/')
+        cb(null, './src/public/uploads/')
     },
     filename: function (req, file, cb) {
         cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
@@ -38,17 +39,20 @@ route.get('/', async (req, res) => {
 
 route.post('/', upload.single('productimage'), async (req, res) => {
     //add new products
-    // console.log(req.file)
+    console.log(req.file)
+    console.log(req.body)
     const { name, price, manufacturer } = req.body
-    const productimage = req.file.path
-
+    // const productimage = req.file.path.substr(8)
+    const productimage = req.file.filename
+    console.log("in product.js " + productimage)
     if ((!name) || (!price) || (!manufacturer)) {
         return res.status(400).send({
             error: 'Need name, price and manufacturer to create new product'
         })
     }
     const products = await AddNewProduct(name, price, manufacturer, productimage)
-    res.status(201).send(products)
+    res.status(201).send(`<h1>product added successfully</h1>
+    <a href="index.html">visit to home page</a>`)
 
 })
 
