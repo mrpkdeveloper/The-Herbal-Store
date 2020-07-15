@@ -2,20 +2,25 @@ $(function () {
     console.log("in index.js")
     let productlist = $('#productlist')
 
-    fetchproducts(async function (products) {
+
+    fetchproducts(function (products) {
+        // p = products
         console.log("in fetch product function")
         productlist.empty()
         for (product of products) {
             productlist.append(createproductcard(product))
         }
+
     }).then(() => {
-        console.log("isnside then")
-        let buy_btn = $('#button-1')
+        console.log("inside then")
+        // console.log()
+        let buy_btn = $('.btn')
 
         console.log("in index.js for cart purpose")
 
-        buy_btn.click(function () {
+        buy_btn.click(function (event) {
             console.log("button clicked")
+            console.log(event.target.id)
         })
     })
 
