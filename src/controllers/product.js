@@ -20,19 +20,34 @@ async function findAllProducts() {
     return all_product
 }
 
+async function findById(pid) {
+    const One_product = await products.findAll({
+        // include: [Users] 
+        where: {
+            id: pid
+        }                 //We can only do this because of the relation we've provided before
+    })
+    return One_product
+}
+
+
 // test
 // async function task() {
 
 //     // console.log(await AddNewProduct('sample-4', 20, 'patanjali'))
 
-//     const products = await findAllProducts()
-//     for (let p of products) {
-//         console.log(`${p.id}\n${p.name}\n${p.price}\n${p.manufacturer}\n===============\n `)
-//     }
+//     // const products = await findAllProducts()
+//     // for (let p of products) {
+//     //     console.log(`${p.id}\n${p.name}\n${p.price}\n${p.manufacturer}\n===============\n `)
+//     // }
+
+//     const p = await findById(2)
+//     console.log(p)
 // }
 // task();
 
 module.exports = {
     findAllProducts,
-    AddNewProduct
+    AddNewProduct,
+    findById
 }

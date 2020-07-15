@@ -21,6 +21,9 @@ $(function () {
         buy_btn.click(function (event) {
             console.log("button clicked")
             console.log(event.target.id)
+            fetchproductsById(event.target.id, function (product) {
+                console.log(product)
+            })
         })
     })
 

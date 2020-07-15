@@ -5,6 +5,12 @@ async function fetchproducts(done) {
     })
 }
 
+async function fetchproductsById(id, done) {
+    await $.get(`/api/products/${id}`, function (data) {
+        done(data)
+    })
+}
+
 function addproducts(name, manu, price, productimage, done) {
     $.post('/api/products', {
         name: name,
@@ -26,7 +32,7 @@ function createproductcard(product) {
             <h4 class="card-title">${product.name}</h5>
             <h6 class="card-title">${product.manufacturer}</h4>
             <h6 class="card-title">${product.price}</h4>
-            <button type="submit" class="btn btn-primary m-3" id="button-${product.id}">Buy</button>
+            <button type="submit" class="btn btn-primary m-3" id="${product.id}">Buy</button>
         </div>
     </div>`)
 

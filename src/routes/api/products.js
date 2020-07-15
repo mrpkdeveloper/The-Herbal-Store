@@ -1,4 +1,4 @@
-const { findAllProducts, AddNewProduct } = require('../../controllers/product')
+const { findAllProducts, AddNewProduct, findById } = require('../../controllers/product')
 const route = require('express').Router()
 //multer
 const multer = require('multer')
@@ -36,6 +36,13 @@ route.get('/', async (req, res) => {
     const products = await findAllProducts()
     res.status(200).send(products)
 })
+
+route.get('/:id', async (req, res) => {
+    //get all products
+    const products = await findById(req.params.id)
+    res.status(200).send(products)
+})
+
 
 route.post('/', upload.single('productimage'), async (req, res) => {
     //add new products
