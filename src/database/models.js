@@ -30,7 +30,8 @@ const products = db.define('products', {              //table name products with
 
     },
     productimage: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+
     }
 
 })
@@ -48,6 +49,10 @@ const cart = db.define('cart', {
         allowNull: true,
         defaultValue: 0.0
 
+    },
+    productimage: {
+        type: DataTypes.STRING,
+        unique: true
     }
 
 })

@@ -11,6 +11,8 @@ async function fetchproductsById(id, done) {
     })
 }
 
+
+
 function addproducts(name, manu, price, productimage, done) {
     $.post('/api/products', {
         name: name,
@@ -22,6 +24,19 @@ function addproducts(name, manu, price, productimage, done) {
     })
 
 }
+
+async function addproductstocart(name, manu, price, productimage, done) {
+    await $.post('/api/cart', {
+        name: name,
+        manufacturer: manu,
+        price: price,
+        productimage: productimage
+    }, function (data) {
+        done(data)
+    })
+
+}
+
 
 function createproductcard(product) {
     console.log(" in shop.js " + product.productimage)

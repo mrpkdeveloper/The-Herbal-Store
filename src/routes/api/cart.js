@@ -6,14 +6,19 @@ route.post('/', (req, res) => {
     cart.create({
         name: req.body.name,
         price: parseFloat(req.body.price),
-        manufacturer: req.body.manufacturer
+        manufacturer: req.body.manufacturer,
+        productimage: req.body.productimage,
+        ignoreDuplicates: true,
+        ignore: true
 
     })
         .then((cart) => {
             res.status(201).send(cart)
         })
         .catch((err) => {
-            res.status(501).send({ error: "product not added to cart" })
+            console.log(err)
+            res.status(201).send(err)
+            // res.status(501).send({ error: "product not added to cart" })
         })
 })
 

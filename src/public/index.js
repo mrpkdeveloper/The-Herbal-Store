@@ -22,16 +22,19 @@ $(function () {
             console.log("button clicked")
             console.log(event.target.id)
             fetchproductsById(event.target.id, function (product) {
-                console.log(product)
+                console.log(product[0])
+                addproductstocart(product[0].name, product[0].manufacturer, product[0].price, product[0].productimage, function (p) {
+                    // console.log(p)
+                    if (p.name == 'SequelizeUniqueConstraintError') {
+                        window.alert("product already added to cart")
+                    } else {
+                        window.alert(p.name + " added to cart")
+                    }
+                })
+
             })
         })
     })
-
-
-
-
-
-
 })
 
 
